@@ -1,9 +1,373 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>BARS: Beat-Adaptive Rap Synthesis via Flow Matching</title>
-  </head>
-  <body>
-    <h1>Audio samples will be here soon.</h1>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BARS: Beat-Adaptive Rap Synthesis via Flow Matching</title>
+  <!-- REMOVE before deploying: fixes relative paths in VSCode preview -->
+  <!-- <base href="demo2/"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      color: #222;
+      background: #fff;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    header p.subtitle {
+      font-size: 1rem;
+      color: #555;
+    }
+    section {
+      margin-bottom: 3.5rem;
+    }
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    section p.description {
+      font-size: 0.97rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #f5f5f5;
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ddd;
+      font-weight: 600;
+    }
+    td {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ddd;
+      vertical-align: middle;
+    }
+    audio {
+      width: 100%;
+      min-width: 160px;
+      height: 34px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- <header>
+  <h1>BARS: Beat-Adaptive Rap Synthesis via Flow Matching</h1>
+  <p class="subtitle">Demo page for ISMIR 2026 submission</p>
+  <img src="images/bars.jpeg"
+     alt="Speed control visualization"
+     style="display:block; margin:12px auto; max-width:480px; width:100%;">
+</header> -->
+<header style="display:flex; gap:20px; align-items:center;">
+
+  <!-- LEFT: IMAGE -->
+  <div style="flex:0 0 30%;">
+    <img src="images/bars.jpeg"
+         alt="BARS system overview"
+         style="width:100%; max-width:480px;">
+  </div>
+
+  <!-- RIGHT: TEXT -->
+  <div style="flex:1;">
+    <h1 style="margin-top:0;">
+      BARS: Beat-Adaptive Rap Synthesis<br>via Flow Matching
+    </h1>
+
+    <p class="subtitle">
+      Demo page for ISMIR 2026 submission
+    </p>
+
+    <p style="color:#444; line-height:1.5;">
+      We present BARS, a system for beat-adaptive rap synthesis using flow matching.<br>
+      The model supports controllable rhythm, timbre transfer, and speed modulation
+      under a unified generative framework.
+    </p>
+  </div>
+
+</header>
+
+<!-- ─────────────────────────────────────────────
+     Section 1: Style Versatility
+────────────────────────────────────────────── -->
+<section id="style-versatility">
+
+  <h2>1. Style Versatility</h2>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
+
+    <!-- LEFT: INPUT -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <!-- Reference -->
+      <div style="padding:12px; border:1px solid #ddd; border-radius:8px;">
+        <div style="font-weight:600; margin-bottom:8px;">
+          Reference Voice
+        </div>
+        <audio controls src="audio_files/timbre/male_ref.mp3"></audio>
+        <div style="margin-top:6px; font-size:11px; color:#777;">
+          This voice is AI generated.
+        </div>
+      </div>
+
+      <!-- Lyrics -->
+      <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+        <div style="font-weight:600; margin-bottom:8px;">
+          Lyrics
+        </div>
+
+        <div style="line-height:1.4; font-size:15px">
+          Same lyrics, one beat — bars slow and heavy,<br>
+          swap the beat out — now the flow is deadly.<br>
+          The words don't change but the style sure does,<br>
+          BARS shifts the delivery just because.<br>
+          <br>
+          Boom bap beat? Watch the syllables sprawl,<br>
+          trap hi-hats? Bars start to crawl and fall<br>
+          into pockets you never knew were there —<br>
+          same sixteen, brand new style in the air.<br>
+          <br>
+          The lyrics stay locked but the vibe's a shapeshifter,<br>
+          BARS reads the beat and becomes a flow drifter.<br>
+          One set of words, infinite ways to ride —<br>
+          the beat decides the style, BARS steps inside.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: OUTPUT -->
+    <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+
+      <div style="font-weight:600; margin-bottom:12px;">
+        Flow Variations
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div>
+          <strong>Trap</strong><br>
+          <audio controls src="audio_files/style/style_piano_trap.mp3"></audio>
+        </div>
+
+        <div>
+          <strong>Orchestral</strong><br>
+          <audio controls src="audio_files/style/style_orchestral.mp3"></audio>
+        </div>
+
+        <div>
+          <strong>UK Grime</strong><br>
+          <audio controls src="audio_files/style/style_ukgrime.mp3"></audio>
+        </div>
+
+        <div>
+          <strong>Drill</strong><br>
+          <audio controls src="audio_files/style/style_drill.mp3"></audio>
+        </div>
+
+
+        <div>
+          <strong>Trip Hop</strong><br>
+          <audio controls src="audio_files/style/style_triphop.mp3"></audio>
+        </div>
+
+        <div>
+          <strong>Slow Hip Hop</strong><br>
+          <audio controls src="audio_files/style/style_krush_it.mp3"></audio>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     Section 2: Zero-Shot Timbre Control
+────────────────────────────────────────────── -->
+
+<section id="zero-shot-timbre">
+  <h2>2. Zero-Shot Timbre Control</h2>
+  <p class="description">
+    <!-- TODO: add section description -->
+  </p>
+
+  <!-- Lyrics -->
+  <table>
+    <thead>
+      <tr>
+        <th>Lyrics</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="line-height:1.4; font-size:15px">
+          Zero-shot timbre, your voice from a clip, powerful tech but we gotta stay legit.<br>
+          Built for the artists, the grinders, the craft, not for misuse — we thought about that.<br>
+          Explicit consent — that's the golden accord, unauthorized synthesis? Put down the sword.<br>
+          The tech is powerful, use it with care, BARS is a tool — respect whose voice is there.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Results -->
+  <table style="margin-top: 1rem;">
+    <thead>
+      <tr>
+        <th>Reference Voice</th>
+        <th>BARS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div><strong>Female</strong></div>
+          <audio controls src="audio_files/timbre/female_ref.mp3"></audio>
+        </td>
+        <td><audio controls src="audio_files/timbre/female_timbre.mp3"></audio></td>
+      </tr>
+      <tr>
+        <td>
+          <div><strong>Male</strong></div>
+          <audio controls src="audio_files/timbre/male_ref.mp3"></audio>
+        </td>
+        <td><audio controls src="audio_files/timbre/male_timbre.mp3"></audio></td>
+      </tr>
+      <tr>
+        <td>
+          <div><strong>Child (Female)</strong></div>
+          <audio controls src="audio_files/timbre/child_ref.mp3"></audio>
+          <div style="margin-top:6px; font-size:11px; color:#777;">
+            Anonymized for blind review
+          </div>
+        </td>
+        <td><audio controls src="audio_files/timbre/child_timbre.mp3"></audio></td>
+      </tr> 
+      <tr>
+        <td>
+          <div><strong>Donald Trump (Reference Voice)</strong></div>
+          <audio controls src="audio_files/timbre/trump_ref.wav"></audio>
+        </td>
+        <td><audio controls src="audio_files/timbre/trump_timbre.mp3"></audio></td>
+      </tr>           
+      <tr>
+        <td>
+          <div><strong>Pikachu (Character Voice)</strong></div>
+          <audio controls src="audio_files/timbre/pikachu_ref.mp3"></audio>
+        </td>
+        <td><audio controls src="audio_files/timbre/pikachu_timbre.mp3"></audio></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     Section 3: Speed Control
+────────────────────────────────────────────── -->
+
+<section id="speed-control">
+
+  <h2>3. Speed Control</h2>
+
+  <!-- Lyrics -->
+  <div style="padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:16px;">
+    <div style="font-weight:700; margin-bottom:8px;">
+      Lyrics
+    </div>
+
+    <div style="line-height:1.4; font-size:15px">
+      First of its kind, to the best of our knowledge<br>
+      Flow-Matching-based framework that's non-autoregressive<br>
+      no duration prediction no phoneme alignment<br>
+      to generate this rap you hear, right this moment
+    </div>
+  </div>
+
+  <!-- MU CENTER -->
+  <div style="text-align:center; margin-bottom:20px;">
+    <div style="font-weight:700;"><strong>μ (mean speed of training data: 17.9 chars/s, σ = 2.9)</strong></div>
+    <audio controls src="audio_files/speed/mu.mp3"></audio>
+  </div>
+
+  <!-- LEFT / RIGHT AXIS -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+
+    <!-- SLOW SIDE -->
+    <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+      <div style="font-weight:700; margin-bottom:10px;">
+        Slower than μ
+      </div>
+
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ − σ (15.0 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma-1.mp3"></audio>
+      </div>
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ − 2σ (12.1 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma-2.mp3"></audio>
+      </div>
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ − 3σ (9.2 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma-3.mp3"></audio>
+      </div>
+
+    </div>
+
+    <!-- FAST SIDE -->
+    <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+      <div style="font-weight:700; margin-bottom:10px;">
+        Faster than μ
+      </div>
+
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ + σ (20.8 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma1.mp3"></audio>
+      </div>
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ + 2σ (23.7 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma2.mp3"></audio>
+      </div>
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ + 6σ (35.3 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma6.mp3"></audio>
+      </div>
+      <div style="text-align:center; margin-bottom:12px;">
+        <strong>μ + 10σ (46.9 cps)</strong><br>
+        <audio controls src="audio_files/speed/sigma10.mp3"></audio>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</body>
 </html>
