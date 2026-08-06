@@ -77,6 +77,13 @@
       min-width: 160px;
       height: 34px;
     }
+    a.li-link img {
+      filter: grayscale(1) brightness(0.7);
+      transition: filter 0.15s ease;
+    }
+    a.li-link:hover img {
+      filter: none;
+    }
   </style>
 </head>
 <body>
@@ -104,7 +111,17 @@
     </h1>
 
     <p class="subtitle">
-      Demo page for ISMIR 2026 submission
+      Accepted at <a href="https://ismir2026.ismir.net/" target="_blank" rel="noopener noreferrer" style="color:inherit;">ISMIR 2026</a>
+    </p>
+
+    <p style="font-size:1.05rem; margin:0.3rem 0 0.6rem; color:#333;">
+      <strong>Taemin Cho</strong><a href="https://www.linkedin.com/in/taemincho/" target="_blank" rel="noopener noreferrer" aria-label="Taemin Cho on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0.5em 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a>,
+      <strong>Hector Martel</strong><a href="https://www.linkedin.com/in/hmartelb/" target="_blank" rel="noopener noreferrer" aria-label="Hector Martel on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0.5em 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a>,
+      <strong>Enyan Koh</strong><a href="https://www.linkedin.com/in/en-yan-koh-a63104178/" target="_blank" rel="noopener noreferrer" aria-label="Enyan Koh on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a><br>
+      <a href="https://www.bandlab.com" target="_blank" rel="noopener noreferrer" style="color:#5b5a5a; text-decoration:none; font-size:1.05rem; display:inline-flex; align-items:center; gap:6px; margin-top:2px;">
+        <img src="images/BandLab_Icon_Red.svg" alt="" style="height:17px; width:auto;">
+        BandLab Technologies
+      </a>
     </p>
 
     <p style="color:#2b2b2b; line-height:1.5;">
@@ -270,9 +287,6 @@
         <td>
           <div><strong>Child (Female)</strong></div>
           <audio controls src="audio_files/timbre/child_ref.mp3"></audio>
-          <div style="margin-top:6px; font-size:11px; color:#777;">
-            Anonymized for blind review
-          </div>
         </td>
         <td><audio controls src="audio_files/timbre/child_timbre.mp3"></audio>
         <audio controls src="audio_files/timbre/child_timbre2.mp3"></audio></td>
@@ -280,7 +294,7 @@
       <tr>
         <td>
           <div><strong>Donald Trump</strong></div>
-          <audio controls src="audio_files/timbre/trump_ref.wav"></audio>
+          <audio controls src="audio_files/timbre/trump_ref.mp3"></audio>
         </td>
         <td><audio controls src="audio_files/timbre/trump_timbre.mp3"></audio></td>
       </tr>           
