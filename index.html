@@ -124,13 +124,76 @@
       </a>
     </p>
 
-    <p style="color:#2b2b2b; line-height:1.5;">
-      We present <strong>BARS</strong>, a system for beat-adaptive rap synthesis using flow matching.<br>
-      The model supports beat-adaptive flow, zero-shot timbre transfer, and speed modulation within a unified generative framework.
-    </p>
   </div>
 
 </header>
+
+<!-- ─────────────────────────────────────────────
+     Abstract
+────────────────────────────────────────────── -->
+<section id="abstract">
+  <h2>Abstract</h2>
+  <p class="description">
+    We present BARS (Beat-Adaptive Rap Synthesis), a non-autoregressive rapping voice generation model based on Flow Matching, conditioned on a beat track (instrumental backing), lyrics, and a short reference voice for zero-shot timbre control. Unlike prior autoregressive rap synthesis, where rap pace and output duration are strictly determined by the beat, BARS enables independent control over the rap tempo, allowing flexible-length generation without explicit duration prediction or phoneme-level alignment.
+    <br><br>
+    We encode lyrics using a pretrained ByT5 encoder with a lightweight Transformer adapter trained jointly with the model, without relying on speech-pretrained text encoders, enabling natural handling of non-standard orthography (e.g., slang, abbreviations) and numerals common in rap lyrics.
+    <br><br>
+    To address alignment instabilities, such as token skipping or repetition, under strong beat conditioning, we propose Asymmetric Scaled RoPE for cross-attention, which introduces a positional structure to facilitate sequential lyric-audio alignment learning. Furthermore, the model supports partial re-generation via span masking, enabling lyric-level editing while preserving the surrounding vocal style.
+    <br><br>
+    Experiments demonstrate that the proposed model achieves high lyric fidelity, natural rap flow that is rhythmically coherent with the beat, and robust tempo control across a wide range of rapping styles and speeds.
+  </p>
+
+  <div style="border-top:1px solid #eee; margin:20px 0 16px;"></div>
+
+  <div style="font-weight:600; margin-bottom:12px;">
+    🎤 ...but what if the abstract was rapped?
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
+
+    <!-- INPUT: Reference Voice + Beat -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="padding:12px; border:1px solid #ddd; border-radius:8px;">
+        <div style="font-weight:600; margin-bottom:8px;">
+          🎤 Reference Voice
+        </div>
+        <audio controls src="audio_files/timbre/male_ref.mp3"></audio>
+      </div>
+
+      <div style="padding:12px; border:1px solid #ddd; border-radius:8px;">
+        <div style="font-weight:600; margin-bottom:8px;">
+          🎹 Input Beat
+        </div>
+        <audio controls src="audio_files/abstract/abstract_beat.mp3"></audio>
+      </div>
+    </div>
+
+    <!-- OUTPUT: Rap + Mix -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+        <div style="font-weight:600; margin-bottom:8px;">
+          🎤 BARS-Generated Rap
+        </div>
+        <audio controls src="audio_files/abstract/abstract_rap.mp3"></audio>
+      </div>
+
+      <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+        <div style="font-weight:600; margin-bottom:8px;">
+          🎵 Mixed with Beat
+        </div>
+        <audio controls src="audio_files/abstract/abstract_mix.mp3"></audio>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="font-size:0.85rem; color:#777; margin-top:10px;">
+    Lyrics: the abstract above, fed directly into BARS as the rap's lyrics.
+  </div>
+  <div style="margin-top:12px; padding:10px 14px; background:#fff8e1; border:1px solid #f0d98c; border-radius:8px; font-size:0.9rem; color:#5c4a13;">
+    ℹ️ <strong>Note:</strong> for the demos below, we do not provide the beat track separately due to licensing restrictions. Only the mix of the generated rap and the given beat is shown.
+  </div>
+</section>
 
 <!-- ─────────────────────────────────────────────
      Section 1: Style Versatility
