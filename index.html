@@ -27,14 +27,20 @@
       border-radius: 12px;
     }
     header h1 {
-      font-size: 2.2rem;
+      font-size: clamp(1.0rem, 5.2cqi, 2.2rem);
       margin-bottom: 0.1rem;
       font-weight: 800;
       letter-spacing: -0.0em;
     }
     header p.subtitle {
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 3.7cqi, 1.5rem);
       color: #5b5a5a;
+    }
+    header p.authors {
+      font-size: clamp(0.8rem, 2.6cqi, 1.05rem);
+    }
+    header .bandlab-link {
+      font-size: clamp(0.75rem, 2.6cqi, 1.05rem);
     }
     section {
       padding: 20px;
@@ -84,6 +90,38 @@
     a.li-link:hover img {
       filter: none;
     }
+    .hero-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .hero-image {
+      flex: 0 0 28%;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 480px;
+    }
+    .hero-text {
+      flex: 1;
+      container-type: inline-size;
+    }
+    @media (max-width: 600px) {
+      .hero-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .hero-image {
+        flex: none;
+        width: 55%;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+      header h1 br.title-break {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -95,31 +133,30 @@
      alt="Speed control visualization"
      style="display:block; margin:12px auto; max-width:480px; width:100%;">
 </header> -->
-<header style="display:flex; gap:20px; align-items:center;">
+<header class="hero-header">
 
   <!-- LEFT: IMAGE -->
-  <div style="flex:0 0 28%;">
+  <div class="hero-image">
     <img src="images/bars.jpeg"
-         alt="BARS system overview"
-         style="width:100%; max-width:480px;">
+         alt="BARS system overview">
   </div>
 
   <!-- RIGHT: TEXT -->
-  <div style="flex:1;">
+  <div class="hero-text">
     <h1 style="margin-top:0">
-      BARS: Beat-Adaptive Rap Synthesis<br>via Flow Matching
+      BARS: Beat-Adaptive Rap Synthesis via Flow Matching
     </h1>
 
     <p class="subtitle">
       Accepted at <a href="https://ismir2026.ismir.net/" target="_blank" rel="noopener noreferrer" style="color:inherit;">ISMIR 2026</a>
     </p>
 
-    <p style="font-size:1.05rem; margin:0.3rem 0 0.6rem; color:#333;">
+    <p class="authors" style="margin:0.3rem 0 0.6rem; color:#333;">
       <strong>Taemin Cho</strong><a href="https://www.linkedin.com/in/taemincho/" target="_blank" rel="noopener noreferrer" aria-label="Taemin Cho on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0.5em 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a>,
       <strong>Hector Martel</strong><a href="https://www.linkedin.com/in/hmartelb/" target="_blank" rel="noopener noreferrer" aria-label="Hector Martel on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0.5em 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a>,
       <strong>Enyan Koh</strong><a href="https://www.linkedin.com/in/en-yan-koh-a63104178/" target="_blank" rel="noopener noreferrer" aria-label="Enyan Koh on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a><br>
-      <a href="https://www.bandlab.com" target="_blank" rel="noopener noreferrer" style="color:#5b5a5a; text-decoration:none; font-size:1.05rem; display:inline-flex; align-items:center; gap:6px; margin-top:2px;">
-        <img src="images/BandLab_Icon_Red.svg" alt="" style="height:17px; width:auto;">
+      <a href="https://www.bandlab.com" target="_blank" rel="noopener noreferrer" class="bandlab-link" style="color:#5b5a5a; text-decoration:none; display:inline-flex; align-items:center; gap:6px; margin-top:2px;">
+        <img src="images/BandLab_Icon_Red.svg" alt="" style="height:1em; width:auto;">
         BandLab Technologies
       </a>
     </p>
@@ -152,32 +189,41 @@
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
 
     <!-- INPUT: Reference Voice + Beat -->
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <div style="padding:12px; border:1px solid #ddd; border-radius:8px;">
+    <div style="padding:12px; border:1px solid #ddd; border-radius:8px; display:flex; flex-direction:column; gap:12px;">
+      <div>
         <div style="font-weight:600; margin-bottom:8px;">
           🎤 Reference Voice
         </div>
         <audio controls src="audio_files/timbre/male_ref.mp3"></audio>
       </div>
 
-      <div style="padding:12px; border:1px solid #ddd; border-radius:8px;">
+      <div>
         <div style="font-weight:600; margin-bottom:8px;">
           🎹 Input Beat
         </div>
-        <audio controls src="audio_files/abstract/abstract_beat.mp3"></audio>
+        <div style="font-size:0.85rem; color:#555; margin-bottom:8px;">
+          A free beat from <a href="https://www.bandlab.com/beats/home" target="_blank" rel="noopener noreferrer" style="color:inherit;">BandLab Beats</a>: <strong>"Soul Train"</strong> by Fake Flowers.
+        </div>
+        <a href="https://www.bandlab.com/beats/recA3yTimitnVYllg" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; padding:8px 14px; background:#fff; border:1px solid #ccc; border-radius:6px; color:#222; text-decoration:none; font-size:0.9rem;">
+          🎹 Listen to "Soul Train" on <strong>BandLab</strong> Beats ↗
+        </a>
+      </div>
+
+      <div style="padding-top:4px; border-top:1px solid #eee; font-size:0.9rem; color:#333;">
+        📝 <strong>Lyrics:</strong> the abstract above, fed directly into BARS as the rap's lyrics.
       </div>
     </div>
 
     <!-- OUTPUT: Rap + Mix -->
-    <div style="display:flex; flex-direction:column; gap:12px;">
-      <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+    <div style="padding:12px; border:1px solid #eee; border-radius:8px; display:flex; flex-direction:column; gap:12px;">
+      <div>
         <div style="font-weight:600; margin-bottom:8px;">
           🎤 BARS-Generated Rap
         </div>
         <audio controls src="audio_files/abstract/abstract_rap.mp3"></audio>
       </div>
 
-      <div style="padding:12px; border:1px solid #eee; border-radius:8px;">
+      <div>
         <div style="font-weight:600; margin-bottom:8px;">
           🎵 Mixed with Beat
         </div>
@@ -186,12 +232,8 @@
     </div>
 
   </div>
-
-  <div style="font-size:0.85rem; color:#777; margin-top:10px;">
-    Lyrics: the abstract above, fed directly into BARS as the rap's lyrics.
-  </div>
   <div style="margin-top:12px; padding:10px 14px; background:#fff8e1; border:1px solid #f0d98c; border-radius:8px; font-size:0.9rem; color:#5c4a13;">
-    ℹ️ <strong>Note:</strong> for the demos below, we do not provide the beat track separately due to licensing restrictions. Only the mix of the generated rap and the given beat is shown.
+    ℹ️ <strong>Note:</strong> for the demos below, we do not provide the beat track separately, as the license does not permit redistributing the unmodified beat on its own. Only the mix of the generated rap and the given beat is shown.
   </div>
 </section>
 
@@ -379,6 +421,10 @@
 <section id="speed-control">
 
   <h2>3. Speed Control</h2>
+
+  <p class="description">
+    Speed is controlled by trimming the length of the input beat track: a shorter beat forces a faster rap flow to fit the same lyrics, while a longer beat produces a slower flow.
+  </p>
 
   <!-- Lyrics -->
   <div style="padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:16px;">
