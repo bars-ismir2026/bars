@@ -56,7 +56,7 @@
       letter-spacing: -0.0em;
     }
     header p.subtitle {
-      font-size: clamp(1rem, 3.7cqi, 1.5rem);
+      font-size: clamp(1rem, 3.7cqi, 1.2rem);
       color: #5b5a5a;
     }
     header p.authors {
@@ -145,6 +145,38 @@
         display: none;
       }
     }
+    .bibtex-wrap {
+      position: relative;
+    }
+    .bibtex-box {
+      background: #2d2d2d;
+      color: #e8e8e8;
+      padding: 16px 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      white-space: pre;
+      margin: 0;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e8e8e8;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.22);
+    }
   </style>
 </head>
 <body>
@@ -170,11 +202,7 @@
       BARS: Beat-Adaptive Rap Synthesis via Flow Matching
     </h1>
 
-    <p class="subtitle">
-      Accepted at <a href="https://ismir2026.ismir.net/" target="_blank" rel="noopener noreferrer" style="color:inherit;">ISMIR 2026</a>
-    </p>
-
-    <p class="authors" style="margin:0.3rem 0 0.6rem; color:#333;">
+    <p class="authors" style="margin:1.0rem 0 0.6rem; color:#333;">
       <strong>Taemin Cho</strong><a href="https://www.linkedin.com/in/taemincho/" target="_blank" rel="noopener noreferrer" aria-label="Taemin Cho on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0.5em 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a>,
       <strong>Hector Martel</strong><a href="https://www.linkedin.com/in/hmartelb/" target="_blank" rel="noopener noreferrer" aria-label="Hector Martel on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0.5em 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a>,
       <strong>Enyan Koh</strong><a href="https://www.linkedin.com/in/en-yan-koh-a63104178/" target="_blank" rel="noopener noreferrer" aria-label="Enyan Koh on LinkedIn" class="li-link" style="display:inline-flex; align-items:center; vertical-align:-0.08em; margin:0 0 0 0.25em;"><img src="images/LI-In-B.png" alt="" style="height:1em; width:auto;"></a><br>
@@ -182,6 +210,18 @@
         <img src="images/BandLab_Icon_Red.svg" alt="" style="height:1em; width:auto;">
         BandLab Technologies
       </a>
+    </p>
+
+    <p class="subtitle" style="display:flex; align-items:center; justify-content:center; gap:0.6em; flex-wrap:wrap;">
+      <span>Accepted at <a href="https://ismir2026program.ismir.net/poster_267.html#details" target="_blank" rel="noopener noreferrer" style="color:inherit;">ISMIR 2026</a></span>
+      <span style="font-size:0.8em; font-weight:700; color:#8a6d1a;">🏆 Best Paper Award Nominee</span>
+    </p>
+
+    <p class="subtitle" style="font-size:clamp(0.85rem, 2.8cqi, 1rem); margin-top:0.3rem;">
+      Paper:
+      <a href="https://ismir2026program.ismir.net/poster_267.html#paper" target="_blank" rel="noopener noreferrer" style="color:inherit;">ISMIR</a>
+      ·
+      <span style="color:#999;" title="Coming soon">arXiv</span>
     </p>
 
   </div>
@@ -678,6 +718,37 @@
   </table>
 
 </section>
+
+<!-- ─────────────────────────────────────────────
+     Citation
+────────────────────────────────────────────── -->
+<section id="citation">
+  <h2>Citation</h2>
+  <p class="description">If you find this work useful, please cite:</p>
+
+  <div class="bibtex-wrap">
+    <button class="copy-btn" id="copy-bibtex-btn" onclick="copyBibtex()">Copy</button>
+    <pre class="bibtex-box" id="bibtex">@inproceedings{cho2026bars,
+  title     = {{BARS}: Beat-Adaptive Rap Synthesis via Flow Matching},
+  author    = {Cho, Taemin and Martel, Hector and Koh, Enyan},
+  booktitle = {Proceedings of the 27th International Society for Music Information Retrieval Conference (ISMIR)},
+  year      = {2026},
+  address   = {Abu Dhabi, UAE}
+}</pre>
+  </div>
+</section>
+
+<script>
+  function copyBibtex() {
+    const text = document.getElementById('bibtex').innerText;
+    const btn = document.getElementById('copy-bibtex-btn');
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+  }
+</script>
 
 </body>
 </html>
